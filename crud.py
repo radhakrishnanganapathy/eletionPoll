@@ -28,3 +28,13 @@ def get_votes(db: Session, skip: int = 0, limit: int = 100):
     Retrieve all votes (Admin use mostly).
     """
     return db.query(models.Vote).offset(skip).limit(limit).all()
+
+def delete_vote(db: Session, vote_id: int):
+    """
+    Delete a vote by ID.
+    """
+    db_vote = db.query(models.Vote).filter(models.Vote.id == vote_id).first()
+    if db_vote:
+        db.delete(db_vote)
+        db.commit()
+    return db_vote

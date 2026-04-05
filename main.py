@@ -50,6 +50,16 @@ def read_votes(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     votes = crud.get_votes(db, skip=skip, limit=limit)
     return votes
 
+@app.delete("/api/votes/{vote_id}")
+def delete_vote_by_id(vote_id: int, db: Session = Depends(get_db)):
+    """
+    Delete a vote by its ID.
+    """
+    deleted_vote = crud.delete_vote(db, vote_id=vote_id)
+    if not deleted_vote:
+        raise HTTPException(status_code=404, detail="Vote not found.")
+    return {"message": "Vote successfully deleted.", "deleted_id": vote_id}
+
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the Election Poll API"}
