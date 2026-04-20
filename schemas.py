@@ -9,6 +9,7 @@ class VoteBase(BaseModel):
     age_group: str
     caste: Optional[str] = None
     first_time_voter: bool = False
+    is_pondicherry: bool = False
     pincode: Optional[str] = None
     device_fingerprint: str # Sent from frontend browser script
 

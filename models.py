@@ -14,5 +14,6 @@ class Vote(Base):
     age_group = Column(String, nullable=False)
     caste = Column(String, nullable=True) # Optional
     first_time_voter = Column(Boolean, default=False)
+    is_pondicherry = Column(Boolean, default=False)
     pincode = Column(String, nullable=True) # Optional
     created_at = Column(DateTime(timezone=True), server_default=func.now())
